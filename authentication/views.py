@@ -12,9 +12,13 @@ def signup(request):
         if form.is_valid():
             cd = form.cleaned_data
             user = CustomUser.objects.create_user(
+                firstname=cd['firstname'],
                 email=cd['email'],
-                is_active=True,
+                password1=cd['password1'],
+                lastname=cd['lastname'],
+                birthdate=cd['birthdate']
             )
+            user.is_active = True
             user.set_password(cd['password1'])
             user.save()
 
