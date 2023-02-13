@@ -3,7 +3,7 @@ from django.contrib.auth.models import PermissionsMixin, AbstractBaseUser
 from .managers import MyUserManager
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin) :
+class CustomUser(AbstractBaseUser, PermissionsMixin):
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
     email = models.EmailField(unique=True)

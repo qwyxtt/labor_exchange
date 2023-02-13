@@ -2,8 +2,10 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class MyUserManager(BaseUserManager):
-    def _create_user(self, email, username, password, **extra_fields):
+    def _create_user(self, email, username, password1, **extra_fields):
         if not email:
+
+
             raise ValueError("Вы не ввели Email")
         if not username:
             raise ValueError("Вы не ввели Логин")
@@ -12,12 +14,12 @@ class MyUserManager(BaseUserManager):
             username=username,
             **extra_fields,
         )
-        user.set_password(password)
+        user.set_password(password1)
         user.save(using=self._db)
         return user
 
-    def create_user(self, email, username, password):
-        return self._create_user(email, username, password)
+    def create_user(self, email, username, password1):
+        return self._create_user(email, username, password1)
 
-    def create_superuser(self, email, username, password):
-        return self._create_user(email, username, password, is_staff=True, is_superuser=True)
+    def create_superuser(self, email, username, password1):
+        return self._create_user(email, username, password1, is_staff=True, is_superuser=True)

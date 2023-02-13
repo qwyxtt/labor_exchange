@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .models import CustomUser
 from .forms import SignUpForm, LoginForm
@@ -12,13 +12,13 @@ def signup(request):
         if form.is_valid():
             cd = form.cleaned_data
             user = CustomUser.objects.create_user(
-                firstname=cd['firstname'], lastname=cd['lastname'], email=cd['email'],
+                email=cd['email'],
                 is_active=True,
             )
             user.set_password(cd['password1'])
             user.save()
 
-            return HttpResponse('success')
+            return redirect('success')
         error += 'User with such email already exists'
 
     return render(request, template_name='authentications/signup.html', context={
@@ -34,10 +34,10 @@ def login_view(request):
     if request.method == 'POST':
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(firstname=cd['firstname'], password=cd['password'], email=cd['email'])
+            user = authenticate(email=cd['email'], password=cd['password'])
             if user is not None:
                 login(request, user)
-                return HttpResponse('success')
+                return redirect('success')
             error += 'Username or password are incorrect'
     return render(request, 'authentications/login.html', context={
         'form': form,
@@ -48,4 +48,4 @@ def login_view(request):
 @login_required
 def logout_view(request):
     logout(request)
-    return HttpResponse('success')
+    return redirect('success')

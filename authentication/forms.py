@@ -1,4 +1,3 @@
-from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 from django import forms
 
@@ -13,6 +12,6 @@ class SignUpForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    firstname = forms.CharField(max_length=255)
-    password = forms.CharField(widget=forms.PasswordInput)
     email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
+
