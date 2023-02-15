@@ -4,9 +4,9 @@ from authentication.models import CustomUser
 
 class Task(models.Model):
     name = models.CharField(max_length=255)
-    description_of_task = models.TimeField()
+    description_of_task = models.TextField()
 
 
-class employee(models.Model):
-    user = models.OneToOneField(CustomUser)
-    task = models.OneToOneField(Task)
+class Employee(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    task = models.OneToOneField(Task, on_delete=models.CASCADE)
