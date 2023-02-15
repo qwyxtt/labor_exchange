@@ -2,7 +2,11 @@ from django.db import models
 from authentication.models import CustomUser
 
 
-class Account(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    task = models.CharField(max_length=255)
+class Task(models.Model):
+    name = models.CharField(max_length=255)
+    description_of_task = models.TimeField()
 
+
+class employee(models.Model):
+    user = models.OneToOneField(CustomUser)
+    task = models.OneToOneField(Task)
