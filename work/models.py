@@ -13,7 +13,6 @@ balance = models.DecimalField(
     max_digits=10,
     validators=[MinValueValidator(limit_value=0.01)]
 )
-...
 
 
 class Employer(models.Model):
@@ -27,8 +26,6 @@ balance = models.DecimalField(
     max_digits=10,
     validators=[MinValueValidator(limit_value=0.01)]
 )
-
-...
 
 
 class Task(models.Model):

@@ -1,11 +1,12 @@
 from .models import CustomUser
 from django import forms
+from django.utils.timezone import now
 
 
 class SignUpForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
-    birthdate = forms.DateField(widget=forms.SelectDateWidget)
+    birthdate = forms.DateField(widget=forms.SelectDateWidget(years=range(1950, int(now().year))))
 
     class Meta:
         model = CustomUser
