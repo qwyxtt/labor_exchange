@@ -12,17 +12,17 @@ def signup(request):
         if form.is_valid():
             cd = form.cleaned_data
             user = CustomUser.objects.create_user(
-                firstname=cd['firstname'],
+                full_name=cd['full_name'],
                 email=cd['email'],
                 password1=cd['password1'],
-                lastname=cd['lastname'],
-                birthdate=cd['birthdate']
+                birthdate=cd['birthdate'],
+                activity=cd['activity']
             )
             user.is_active = True
             user.set_password(cd['password1'])
             user.save()
 
-            return redirect('success')
+            return redirect('main')
         error += 'User with such email already exists'
 
     return render(request, template_name='authentications/signup.html', context={
@@ -41,7 +41,7 @@ def login_view(request):
             user = authenticate(email=cd['email'], password=cd['password'])
             if user is not None:
                 login(request, user)
-                return redirect('success')
+                return redirect('main')
             error += 'Username or password are incorrect'
     return render(request, 'authentications/login.html', context={
         'form': form,

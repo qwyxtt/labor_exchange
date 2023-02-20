@@ -3,9 +3,9 @@ from .views import *
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('signup/', signup),
-    path('login/', login_view),
-    path('logout/', logout_view),
-    path('success/', TemplateView.as_view(template_name='authentications/success.html'), name='success')
+    path('authapp.signup/', signup),
+    path('authapp.login/', login_view),
+    path('authapp.logout/', logout_view),
+    path('main/', TemplateView.as_view(template_name='authentications/main.html'), name='main')
 
 ]
