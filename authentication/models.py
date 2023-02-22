@@ -8,7 +8,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         ('employee', 'employee'),
         ('employer', 'employer')
     )
-    full_name = models.CharField(max_length=111, null=True)
+    firstname = models.CharField(max_length=111, null=True)
+    lastname = models.CharField(max_length=111, null=True)
     email = models.EmailField(unique=True)
     birthdate = models.DateField()
     location = models.CharField(max_length=255, null=True)
@@ -17,3 +18,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     objects = MyUserManager()
+
+    def full_name(self):
+        return self.first_name + self.last_name

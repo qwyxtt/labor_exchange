@@ -10,7 +10,7 @@ class SignUpForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = ('email', 'full_name', 'password1', 'password2', 'activity')
+        fields = ('email', 'firstname', 'lastname', 'password1', 'password2', 'activity')
 
 
 class LoginForm(forms.Form):

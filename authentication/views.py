@@ -12,7 +12,8 @@ def signup(request):
         if form.is_valid():
             cd = form.cleaned_data
             user = CustomUser.objects.create_user(
-                full_name=cd['full_name'],
+                firstname=cd['firstname'],
+                lastname=cd['lastname'],
                 email=cd['email'],
                 password1=cd['password1'],
                 birthdate=cd['birthdate'],

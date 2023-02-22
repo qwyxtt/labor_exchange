@@ -27,14 +27,12 @@ class ProfilePage(DetailView):
         return context
 
 
-class created_profile(CreateView):
+class Created_profile(CreateView):
     model = Employer
 
-    template_name = 'base/create_profile.html'
+    template_name = 'authentications/create_profile.html'
     fields = ['profile_pic', 'bio']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-
-
