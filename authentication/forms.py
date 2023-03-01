@@ -4,9 +4,28 @@ from django.utils.timezone import now
 
 
 class SignUpForm(forms.ModelForm):
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
     birthdate = forms.DateField(widget=forms.SelectDateWidget(years=range(1950, int(now().year))))
+    email = forms.EmailField(
+        label='',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите почту'})
+    )
+    firstname = forms.CharField(
+        label='',
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'Введите имя'})
+    )
+    lastname = forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите фамилия'})
+    )
+    password1 = forms.CharField(
+        label='',
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Введите пароль'})
+    )
+    password2 = forms.CharField(
+        label='',
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Подтверждение пароля'})
+    )
 
     class Meta:
         model = CustomUser
@@ -16,4 +35,3 @@ class SignUpForm(forms.ModelForm):
 class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
-
