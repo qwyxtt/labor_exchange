@@ -9,3 +9,5 @@ def index(request):
         'about': about
     }
     return render(request, 'work/index.html', context)
+
+
