@@ -23,7 +23,7 @@ def signup(request):
             user.set_password(cd['password1'])
             user.save()
 
-            return redirect('main')
+            return redirect('employer')
         error += 'User with such email already exists'
 
     return render(request, template_name='authentications/signup.html', context={
@@ -42,7 +42,7 @@ def login_view(request):
             user = authenticate(email=cd['email'], password=cd['password'])
             if user is not None:
                 login(request, user)
-                return redirect('main')
+                return redirect('employer')
             error += 'Username or password are incorrect'
     return render(request, 'authentications/login.html', context={
         'form': form,
