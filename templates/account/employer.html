@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}welcome{% endblock %}
+
+
+{% block content %}
+
+<div class="features">
+    {% if request.user.activity == 'employer' %}
+        welcome employer
+    {% else %}
+        welcome employee
+    {% endif %}
+</div>
+{% endblock %}
