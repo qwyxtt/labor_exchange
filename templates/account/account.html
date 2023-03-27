@@ -4,8 +4,13 @@
 
 
 {% block content %}
-
 <div class="features">
-    welcome
+    {% if request.user.activity == 'employer' %}
+        welcome employer
+    {% else %}
+        welcome employee
+
+    {% endif %}
 </div>
+<button class="btn btn-info"><i class="fa fa-plus-circle"></i>общая информация</button>
 {% endblock %}

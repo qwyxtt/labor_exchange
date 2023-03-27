@@ -2,5 +2,5 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('pf/', account, name='account')
+    path('account/', account_of_empoyer, name='account')
 ]
