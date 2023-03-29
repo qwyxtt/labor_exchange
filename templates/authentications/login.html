@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Войти{% endblock %}
+
+{% block content %}
+<div class="features">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <span>{{error}}</span>
+
+        <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Войти</button>
+    </form>
+</div>
+{% endblock %}
