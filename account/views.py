@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def account_of_employer(request):
+    return render(request, 'account/account.html', context={'title': ' мой аккаунт'})
