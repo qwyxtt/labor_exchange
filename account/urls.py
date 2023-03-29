@@ -1,6 +1,6 @@
 from django.urls import path
-from django.views.generic import TemplateView
+from .views import account_of_employer
 
 urlpatterns = [
-
+    path('account/', account_of_employer, name='account')
 ]
