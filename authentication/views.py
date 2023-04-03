@@ -23,7 +23,7 @@ def signup(request):
             user.set_password(cd['password1'])
             user.save()
 
-            return redirect('success')
+            return redirect('login')
         error += 'User with such email already exists'
 
     return render(request, template_name='authentications/signup.html', context={
@@ -53,4 +53,4 @@ def login_view(request):
 @login_required
 def logout_view(request):
     logout(request)
-    return redirect('exit')
+    return redirect('success')

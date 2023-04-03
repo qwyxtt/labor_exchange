@@ -36,3 +36,4 @@ class Task(models.Model):
     owner = models.ForeignKey(Employer, on_delete=models.CASCADE, null=True)
     executor = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True)
 
+# Task.objects.filter(owner__user=request.user)
