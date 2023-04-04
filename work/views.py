@@ -1,14 +1,13 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Task
 from .forms import CreateTaskForm
 
 
 def index(request):
-    about = 'на этой платформе мы помогаем подросткам получить свой первый заработок'
     context = {
         'main': 'Главная',
-        'about': about
+        'about': 'на этой платформе мы помогаем подросткам получить свой первый заработок'
     }
     return render(request, 'work/index.html', context)
 
@@ -25,12 +24,15 @@ def create_task(request):
     error = ''
     if request.method == 'POST':
         if form.is_valid():
-            cd = form.clean_data
+            cd = form.cleaned_data
             task = Task.objects.create(
                 title=cd['title'],
-                descriptions_task=cd['descriptions_task'],
+                description=cd['description'],
                 end_date=cd['end_date'],
                 cost=cd['cost']
             )
-        return render(request, 'account/create_task.html', context={'form': form})
+            task.owner = request.user
+            task.save()
+            return redirect('success')
+    return render(request, 'account/create_task.html', context={'form': form})
 

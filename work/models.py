@@ -25,7 +25,7 @@ class Employer(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=255, null=True)
-    descriptions_task = models.CharField(max_length=255, null=True)
+    description = models.TextField(null=True)
     end_date = models.DateTimeField(null=True)
     cost = models.DecimalField(
         default=0,

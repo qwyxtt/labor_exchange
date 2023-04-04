@@ -1,8 +1,9 @@
 from django import forms
 from .models import Task
 
-
 class CreateTaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = '__all__'
+        exclude = ['owner', 'executor']
+
+    end_date = forms.DateField(widget=forms.SelectDateWidget())
