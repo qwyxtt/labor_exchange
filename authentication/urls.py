@@ -8,3 +8,4 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('success/', TemplateView.as_view(template_name='authentications/success.html'), name='success'),
 ]
+
