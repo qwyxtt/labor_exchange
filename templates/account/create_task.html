@@ -5,10 +5,11 @@
 
 {% block content %}
 <div class='features'>
-<form method="post">
-{{ form.as_p }}
- <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Создать задание</button>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Создать задание</button>
 
-</form> 
+    </form>
 </div>
 {% endblock %}

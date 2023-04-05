@@ -8,6 +8,7 @@ User = get_user_model()
 
 @receiver(post_save, sender=User)
 def create_activity(sender, instance, created, **kwargs):
+    print(instance)
     if created:
         if instance.activity == 'employee':
             Employee.objects.create(user=instance)

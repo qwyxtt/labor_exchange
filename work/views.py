@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from .models import Task
+from .models import Task, Employer
+
 from .forms import CreateTaskForm
 
 
@@ -14,7 +15,7 @@ def index(request):
 
 def task_history(request):
     context = {
-        'task': Task.objects.filter(owner__user=request.user)
+        'tasks': Task.objects.filter(owner__user=request.user)
     }
     return render(request, 'account/task.html', context)
 
@@ -31,8 +32,21 @@ def create_task(request):
                 end_date=cd['end_date'],
                 cost=cd['cost']
             )
-            task.owner = request.user
+            task.owner = Employer.objects.get(user=request.user)
             task.save()
             return redirect('success')
     return render(request, 'account/create_task.html', context={'form': form})
 
+
+def task_history_employee(request):
+    context = {
+        'task': Task.objects.filter(executor__user=request.user)
+    }
+    return render(request, 'account/task.html', context)
+
+
+def work(request):
+    context = {
+        'info': 'здесь вы можете выбрать работу на свой вкус'
+    }
+    return render(request, 'account/work.html', context)
