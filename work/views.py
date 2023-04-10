@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import Task, Employer
+from django.shortcuts import get_object_or_404
 
 from .forms import CreateTaskForm
 
@@ -32,7 +33,8 @@ def create_task(request):
                 end_date=cd['end_date'],
                 cost=cd['cost']
             )
-            task.owner = Employer.objects.get(user=request.user)
+            obj = get_object_or_404(Employer, user=request.user)
+            task.owner = obj
             task.save()
             return redirect('success')
     return render(request, 'account/create_task.html', context={'form': form})
@@ -47,6 +49,7 @@ def task_history_employee(request):
 
 def work(request):
     context = {
-        'info': 'здесь вы можете выбрать работу на свой вкус'
+        'info': 'здесь вы можете выбрать работу на свой вкус',
+        'task': Task.objects.filter(is_active=True)
     }
     return render(request, 'account/work.html', context)

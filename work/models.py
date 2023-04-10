@@ -25,6 +25,7 @@ class Employer(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=255, null=True)
+    is_active = models.BooleanField(default=True)
     description = models.TextField(null=True)
     end_date = models.DateTimeField(null=True)
     cost = models.DecimalField(
@@ -36,4 +37,5 @@ class Task(models.Model):
     owner = models.ForeignKey(Employer, on_delete=models.CASCADE, null=True)
     executor = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True)
 
-# Task.objects.filter(owner__user=request.user)
+
+
