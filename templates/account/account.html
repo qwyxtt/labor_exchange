@@ -9,10 +9,8 @@
       <a   href="{% url 'task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>история работ</button>></a>
       <a   href="{% url 'create_task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>создать задание</button>></a>
     {% else %}
-        <button class="btn btn-info"><i class="fa fa-plus-circle"></i>история выполненых работ </button>
+       <a   href="{% url 'history_of_task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>история выполненных работ</button>></a>
 
     {% endif %}
 </div>
-<button class="btn btn-info"><i class="fa fa-plus-circle"></i>общая информация</button>
-<button class="btn btn-info"><i class="fa fa-plus-circle"></i>личная информация</button>
 {% endblock %}

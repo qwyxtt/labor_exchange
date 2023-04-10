@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block title %}история выполненных заданий {% endblock %}
+
+{% block content %}
+<div class='features'>
+<form method="post">
+{{ form.as_p }}
+ <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Создать задание</button>
+
+</form>
+</div>
+{% endblock %}
