@@ -31,7 +31,8 @@ def create_task(request):
                 title=cd['title'],
                 description=cd['description'],
                 end_date=cd['end_date'],
-                cost=cd['cost']
+                cost=cd['cost'],
+                is_active=cd['is_active']
             )
             obj = get_object_or_404(Employer, user=request.user)
             task.owner = obj
@@ -50,6 +51,12 @@ def task_history_employee(request):
 def work(request):
     context = {
         'info': 'здесь вы можете выбрать работу на свой вкус',
-        'task': Task.objects.filter(is_active=True)
+        'tasks': Task.objects.filter(is_active=True)
     }
     return render(request, 'account/work.html', context)
+
+
+def accept_task(request, task_id):
+    task = Task.objects.get(pk=task_id)
+    return render(request, 'account/accept_task.html', context={'task': task})
+
