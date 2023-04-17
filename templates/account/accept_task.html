@@ -4,5 +4,8 @@
 <div class="features">
   {{ task.title }}
   {{ task.description }}
+   <a href="{% url 'go_to_task' task_id=task.id %}">
+        <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Принять задание</button>
+    </a>
 </div>
 {% endblock %}

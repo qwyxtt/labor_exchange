@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from .models import Task, Employer
+from .models import Task, Employer, Employee
 from django.shortcuts import get_object_or_404
 
 from .forms import CreateTaskForm
@@ -27,6 +27,7 @@ def create_task(request):
     if request.method == 'POST':
         if form.is_valid():
             cd = form.cleaned_data
+            obj = get_object_or_404(Employer, user=request.user)
             task = Task.objects.create(
                 title=cd['title'],
                 description=cd['description'],
@@ -34,7 +35,6 @@ def create_task(request):
                 cost=cd['cost'],
                 is_active=cd['is_active']
             )
-            obj = get_object_or_404(Employer, user=request.user)
             task.owner = obj
             task.save()
             return redirect('success')
@@ -60,3 +60,9 @@ def accept_task(request, task_id):
     task = Task.objects.get(pk=task_id)
     return render(request, 'account/accept_task.html', context={'task': task})
 
+
+def go_to_task(request, task_id):
+    if request.user.activity == 'Employee':
+        task = Task.objects.get(pk=task_id)
+        task.executor = CustomUser
+    return redirect('get_work')
