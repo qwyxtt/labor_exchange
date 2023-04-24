@@ -6,6 +6,12 @@
 
 {% block content %}
 <div class="features">
-  вы приняли задание
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% else %}
+        Вы приняли задание
+    {% endif %}
 </div>
 {% endblock %}
