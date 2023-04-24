@@ -2,7 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import Task, Employer, Employee
 from django.shortcuts import get_object_or_404
-
+from django.contrib import messages
+from django.db import transaction
 from .forms import CreateTaskForm
 
 
@@ -16,7 +17,7 @@ def index(request):
 
 def task_history(request):
     context = {
-        'tasks': Task.objects.filter(owner__user=request.user)
+        'tasks': Task.objects.filter(owner__user=request.user, is_active=True)
     }
     return render(request, 'account/task.html', context)
 
@@ -62,7 +63,28 @@ def accept_task(request, task_id):
 
 
 def go_to_task(request, task_id):
-    if request.user.activity == 'Employee':
-        task = Task.objects.get(pk=task_id)
-        task.executor = CustomUser
+    try:
+        employee = Employee.objects.get(user=request.user)
+        if Task.objects.filter(executor=employee, is_active=True).exists():
+            msg = 'у вас уже есть активное задание - {}'.format(
+                Task.objects.get(executor=employee, is_active=True).title
+            )
+            messages.add_message(request, messages.ERROR, msg)
+        else:
+            task = Task.objects.get(pk=task_id)
+            task.executor = employee
+            task.save()
+    except Employee.DoesNotExist:
+        msg = 'вы не являетесь работником'
+        messages.add_message(request, messages.ERROR, msg)
+
     return redirect('get_work')
+
+
+@transaction.atomic
+def end_task(request, task_id):
+    is_active = False
+    owner -= cost
+    executor += cost
+    return render(request,'', context={})
+
