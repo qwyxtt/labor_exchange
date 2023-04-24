@@ -10,5 +10,6 @@ urlpatterns = [
     path('work/', work, name='work'),
     path('task/<int:task_id>/', accept_task, name='accept_task'),
     path('get_task/', TemplateView.as_view(template_name='work/get_work.html'), name='get_work'),
-    path('task/<int:task_id>/go-to-task', go_to_task, name='go_to_task')
+    path('task/<int:task_id>/go-to-task', go_to_task, name='go_to_task'),
+    path('end_task/<int:task_id>/', end_task, name='end_task')
 ]

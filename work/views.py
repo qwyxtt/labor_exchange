@@ -83,8 +83,32 @@ def go_to_task(request, task_id):
 
 @transaction.atomic
 def end_task(request, task_id):
-    is_active = False
-    owner -= cost
-    executor += cost
-    return render(request,'', context={})
+    try:
+        task = Task.objects.get(pk=task_id)
+        if request.user == task.owner.user:
+            task.is_active = False
+            task.owner.balance -= task.cost
+            task.executor.balance += task.cost
+            task.owner.full_clean()
+            task.save()
+            task.owner.save()
+            task.executor.save()
+        else:
+            msg = 'вы не являетесь владельцем задания'
+            messages.add_message(request, messages.ERROR, msg)
+    except Task.DoesNotExist:
+        msg = 'такого задания нету'
+        messages.add_message(request, messages.ERROR, msg)
+    return render(request, 'work/end_task.html', context={})
+
+
+
+
+
+
+
+
+
+
+
 
