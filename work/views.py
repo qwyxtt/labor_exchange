@@ -84,7 +84,7 @@ def go_to_task(request, task_id):
 @transaction.atomic
 def end_task(request, task_id):
     try:
-        task = Task.objects.get(pk=task_id)
+        task = Task.objects.get(pk=task_id, owner__user=request.user)
         if request.user == task.owner.user:
             task.is_active = False
             task.owner.balance -= task.cost
@@ -100,6 +100,9 @@ def end_task(request, task_id):
         msg = 'такого задания нету'
         messages.add_message(request, messages.ERROR, msg)
     return render(request, 'work/end_task.html', context={})
+
+
+
 
 
 
