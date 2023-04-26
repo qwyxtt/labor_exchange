@@ -12,5 +12,8 @@
     {% else %}
         вы выполнили задание
     {% endif %}
+    <a href="{% url 'end_task' task_id=task.id %}">
+        <button class="btn btn-info"><i class="fa fa-plus-circle"></i>выполнил задание</button>
+    </a>
 </div>
 {% endblock %}
