@@ -94,21 +94,9 @@ def end_task(request, task_id):
             task.owner.save()
             task.executor.save()
         else:
-            msg = 'вы не являетесь владельцем задания'
+            msg = 'вы не является владельцем задания'
             messages.add_message(request, messages.ERROR, msg)
     except Task.DoesNotExist:
         msg = 'такого задания нету'
         messages.add_message(request, messages.ERROR, msg)
     return render(request, 'work/end_task.html', context={})
-
-
-
-
-
-
-
-
-
-
-
-
