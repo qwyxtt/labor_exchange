@@ -4,6 +4,9 @@
 
 
 {% block content %}
+   <a href="{% url 'end_task' task_id=task.id %}">
+       <button class="btn btn-info"><i class="fa fa-plus-circle"></i>задание выполнено</button>
+   </a>
 <div class="features">
     {% if messages %}
         {% for message in messages %}
