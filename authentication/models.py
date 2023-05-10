@@ -15,6 +15,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     location = models.CharField(max_length=255, null=True)
     is_active = models.BooleanField(default=False)
     activity = models.CharField(choices=CHOICE_ACTIVITY, null=True, max_length=255)
+    is_staff = models.BooleanField(default=False)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     objects = MyUserManager()
