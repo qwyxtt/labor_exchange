@@ -6,7 +6,7 @@ class Employee(models.Model):
     user = models.OneToOneField('authentication.CustomUser', on_delete=models.CASCADE, null=True)
     skill = models.TextField(null=True)
     balance = models.DecimalField(
-        default=0,
+        default=1000000,
         decimal_places=2,
         max_digits=10,
         validators=[MinValueValidator(limit_value=0.01)]
@@ -16,7 +16,7 @@ class Employee(models.Model):
 class Employer(models.Model):
     user = models.OneToOneField('authentication.CustomUser', on_delete=models.CASCADE, null=True)
     balance = models.DecimalField(
-        default=0,
+        default=1000000,
         decimal_places=2,
         max_digits=10,
         validators=[MinValueValidator(limit_value=0.01)]
@@ -36,6 +36,9 @@ class Task(models.Model):
     )
     owner = models.ForeignKey(Employer, on_delete=models.CASCADE, null=True)
     executor = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True)
+
+
+
 
 
 

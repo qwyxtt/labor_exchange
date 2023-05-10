@@ -4,10 +4,12 @@ from work.models import Task, Employer
 
 def account_of_employer(request):
     context = {
-        'title': 'Мой аккаунт',
-        'tasks': 'tasks'
+        'title': 'Мой аккаунт'
     }
-    emp = Employer.objects.get(user=request.user)
-    tasks = Task.objects.filter(owner=emp)
-    #if tasks.exists():
+    try:
+        emp = Employer.objects.get(user=request.user)
+        context.update({'emp': emp})
+    except Employer.DoesNotExists:
+        emp = Employee.objects.get(user=request.user)
+        context.update({'emp': emp})
     return render(request, 'account/account.html', context)
