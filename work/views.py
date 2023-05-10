@@ -99,4 +99,4 @@ def end_task(request, task_id):
     except Task.DoesNotExist:
         msg = 'такого задания нету'
         messages.add_message(request, messages.ERROR, msg)
-    return render(request, 'work/end_task.html', context={})
+    return render(request, 'work/end_task.html', context={'task_id': task_id})
