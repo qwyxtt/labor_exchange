@@ -7,11 +7,11 @@
 <div class="features">
     {% if request.user.activity == 'employer' %}
     {{ emp.balance }}
-      <a   href="{% url 'task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>история работ</button>></a>
-      <a   href="{% url 'create_task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>создать задание</button>></a>
+      <a   href="{% url 'task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>история работ</button></a>
+      <a   href="{% url 'create_task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>создать задание</button></a>
     {% else %}
     {{ emp.balance }}
-       <a   href="{% url 'history_of_task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>история выполненных работ</button>></a>
+       <a   href="{% url 'history_of_task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>история выполненных работ</button></a>
 
     {% endif %}
 </div>

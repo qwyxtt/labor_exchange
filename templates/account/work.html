@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="features">
-    {{ info }}
+    <h4>{{ info }}</h4>
     {% for task in tasks %}
         {{ task.title }}<br>
     <a href="{% url 'accept_task' task_id=task.id %}">

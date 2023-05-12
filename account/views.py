@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from work.models import Task, Employer
+from work.models import Task, Employer, Employee
 
 
 def account_of_employer(request):
