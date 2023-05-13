@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
 
-{% block title %}история выполненных заданий {% endblock %}
+{% block title %}история выполненных заданий{% endblock %}
 
 {% block content %}
 <div class='features'>
-<form method="post">
-{{ form.as_p }}
- <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Создать задание</button>
-
-</form>
+    {% for tasks in task %}
+    {{ tasks.title }}
+    {% endfor %}
+ <form method="post">
+    {{ form.as_p }}
+ </form>
 </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from work.models import Task, Employer
+from work.models import Task, Employer, Employee
 
 
 def account_of_employer(request):
@@ -13,3 +13,4 @@ def account_of_employer(request):
         emp = Employee.objects.get(user=request.user)
         context.update({'emp': emp})
     return render(request, 'account/account.html', context)
+

@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="features">
-    {{ info }}
+    <h4>{{ info }}</h4>
     {% for task in tasks %}
         {{ task.title }}<br>
     <a href="{% url 'accept_task' task_id=task.id %}">
@@ -14,4 +14,38 @@
     </a>
     {% endfor %}
 </div>
+    <h1>My Data</h1>
+
+    <form method="GET">
+        <label for="filter">Filter:</label>
+        <input type="text" name="filter" id="filter" value="{{ my_filter }}">
+
+        <label for="sort">Sort by:</label>
+        <select name="sort" id="sort">
+            <option value="">---</option>
+            <option value="my_field">My Field</option>
+            <option value="-my_field">My Field (reverse)</option>
+        </select>
+
+        <button type="submit">Apply</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>My Field</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in my_data %}
+                <tr>
+                    <td>{{ item.my_field }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="1">No data</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

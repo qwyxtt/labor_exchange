@@ -10,7 +10,10 @@ from .forms import CreateTaskForm
 def index(request):
     context = {
         'main': 'Главная',
-        'about': 'на этой платформе мы помогаем подросткам получить свой первый заработок'
+        'about': 'наш сайта предлогает следущий перечень услуг',
+        'k': 'k',
+        'l': 'l',
+        'p': 'p',
     }
     return render(request, 'work/index.html', context)
 
@@ -34,7 +37,7 @@ def create_task(request):
                 description=cd['description'],
                 end_date=cd['end_date'],
                 cost=cd['cost'],
-                is_active=cd['is_active']
+                city=cd['city']
             )
             task.owner = obj
             task.save()
@@ -46,13 +49,26 @@ def task_history_employee(request):
     context = {
         'task': Task.objects.filter(executor__user=request.user)
     }
-    return render(request, 'account/task.html', context)
+    return render(request, 'account/history_of_task.html', context)
 
 
 def work(request):
     context = {
-        'info': 'здесь вы можете выбрать работу на свой вкус',
+        'info': 'Здесь вы можете выбрать работу на свой вкус',
         'tasks': Task.objects.filter(is_active=True)
+    }
+    my_data = Task.objects.all()
+    my_filter = request.GET.get('filter')
+    my_sort = request.GET.get('sort')
+    if my_filter:
+        my_data = my_data.filter(my_field=my_filter)
+    if my_sort:
+        my_data = my_data.order_by(my_sort)
+
+    context = {
+        'my_data': my_data,
+        'my_filter': my_filter,
+        'my_sort': my_sort,
     }
     return render(request, 'account/work.html', context)
 
@@ -66,7 +82,7 @@ def go_to_task(request, task_id):
     try:
         employee = Employee.objects.get(user=request.user)
         if Task.objects.filter(executor=employee, is_active=True).exists():
-            msg = 'у вас уже есть активное задание - {}'.format(
+            msg = 'У вас уже есть активное задание - {}'.format(
                 Task.objects.get(executor=employee, is_active=True).title
             )
             messages.add_message(request, messages.ERROR, msg)
@@ -75,7 +91,7 @@ def go_to_task(request, task_id):
             task.executor = employee
             task.save()
     except Employee.DoesNotExist:
-        msg = 'вы не являетесь работником'
+        msg = 'Вы не являетесь работником'
         messages.add_message(request, messages.ERROR, msg)
 
     return redirect('get_work')
@@ -94,9 +110,9 @@ def end_task(request, task_id):
             task.owner.save()
             task.executor.save()
         else:
-            msg = 'вы не является владельцем задания'
+            msg = 'Вы не является владельцем задания'
             messages.add_message(request, messages.ERROR, msg)
     except Task.DoesNotExist:
-        msg = 'такого задания нету'
+        msg = 'Такого задания нету'
         messages.add_message(request, messages.ERROR, msg)
     return render(request, 'work/end_task.html', context={'task_id': task_id})
