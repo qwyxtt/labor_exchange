@@ -11,9 +11,9 @@ def index(request):
     context = {
         'main': 'Главная',
         'about': 'наш сайта предлогает следущий перечень услуг',
-        'money': 'деньги',
-        'communication': 'общение',
-        'something': 'help',
+        'k': 'k',
+        'l': 'l',
+        'p': 'p',
     }
     return render(request, 'work/index.html', context)
 
@@ -36,7 +36,8 @@ def create_task(request):
                 title=cd['title'],
                 description=cd['description'],
                 end_date=cd['end_date'],
-                cost=cd['cost']
+                cost=cd['cost'],
+                city=cd['city']
             )
             task.owner = obj
             task.save()
@@ -55,6 +56,19 @@ def work(request):
     context = {
         'info': 'Здесь вы можете выбрать работу на свой вкус',
         'tasks': Task.objects.filter(is_active=True)
+    }
+    my_data = Task.objects.all()
+    my_filter = request.GET.get('filter')
+    my_sort = request.GET.get('sort')
+    if my_filter:
+        my_data = my_data.filter(my_field=my_filter)
+    if my_sort:
+        my_data = my_data.order_by(my_sort)
+
+    context = {
+        'my_data': my_data,
+        'my_filter': my_filter,
+        'my_sort': my_sort,
     }
     return render(request, 'account/work.html', context)
 

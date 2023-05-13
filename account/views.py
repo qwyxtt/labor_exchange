@@ -13,3 +13,4 @@ def account_of_employer(request):
         emp = Employee.objects.get(user=request.user)
         context.update({'emp': emp})
     return render(request, 'account/account.html', context)
+
