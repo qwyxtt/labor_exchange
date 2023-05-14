@@ -10,10 +10,10 @@ from .forms import CreateTaskForm
 def index(request):
     context = {
         'main': 'Главная',
-        'about': 'наш сайта предлогает следущий перечень услуг',
-        'k': 'k',
-        'l': 'l',
-        'p': 'p',
+        'about': 'С помощью нашего сайта вы сможете :',
+        'money': 'Получить ваш первый денежный заработак ',
+        'experience': 'Сможете получить своей первый трудовой опыт ',
+        '': 'p',
     }
     return render(request, 'work/index.html', context)
 
@@ -116,3 +116,5 @@ def end_task(request, task_id):
         msg = 'Такого задания нету'
         messages.add_message(request, messages.ERROR, msg)
     return render(request, 'work/end_task.html', context={'task_id': task_id})
+
+

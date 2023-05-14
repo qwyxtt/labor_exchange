@@ -2,13 +2,14 @@
 
 {% block title %}количество заданных заданий {% endblock %}
 
+
 {% block content %}
 <div class="features">
     {% for task in tasks %}
     {{ task.title }}
     {{ task.description }}
     <a href="{% url 'end_task' task_id=task.id %}">
-        <button class="btn btn-info"><i class="fa fa-plus-circle"></i>выполнил задание</button>
+        <button  class="btn btn-info"><i class="fa fa-plus-circle"></i>выполнил задание</button>
     </a>
     {% endfor %}
 </div>
