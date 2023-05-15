@@ -41,7 +41,7 @@ def create_task(request):
             )
             task.owner = obj
             task.save()
-            return redirect('success')
+            return redirect('account')
     return render(request, 'account/create_task.html', context={'form': form})
 
 
