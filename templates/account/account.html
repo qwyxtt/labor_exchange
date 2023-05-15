@@ -1,18 +1,35 @@
 {% extends 'base.html' %}
 
-{% block title %}{% endblock %}
+{% block title %}аккаунт {{request.user.firstname}}{% endblock %}
+
+    <style>
+        h5 {
+            border: 2px solid #ffff00;
+            color: blue;
+            padding: 10px 20px 10px 20px;
+            margin: 20px;
+            width: 400px;
+    }
+    </style>
 
 
 {% block content %}
 <div class="features">
     {% if request.user.activity == 'employer' %}
-    <h5> {{ emp.balance }} </h5>
-      <a   href="{% url 'task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>история работ</button></a>
-      <a   href="{% url 'create_task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>создать задание</button></a>
+    <h5 style="margin-left: 1050px"> {{ emp.balance }} </h5>
+      <a   href="{% url 'task' %}" >
+          <button class="btn btn-info"><i class="fa fa-plus-circle"></i>история работ</button>
+      </a>
+      <a   href="{% url 'create_task' %}" >
+          <button class="btn btn-info"><i class="fa fa-plus-circle"></i>создать задание</button>
+      </a>
     {% else %}
-    <h5>{{ emp.balance }}</h5>
-       <a   href="{% url 'history_of_task' %}"><button class="btn btn-info"><i class="fa fa-plus-circle"></i>история выполненных работ</button></a>
+    <h5 style="margin-left: 1050px">{{ emp.balance }}</h5>
+       <a   href="{% url 'history_of_task' %}">
+           <button class="btn btn-info"><i class="fa fa-plus-circle"></i>история выполненных работ</button>
+       </a>
 
     {% endif %}
 </div>
 {% endblock %}
+

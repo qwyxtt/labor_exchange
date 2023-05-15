@@ -1,18 +1,23 @@
 {% extends 'base.html' %}
 
 
-{% block title %}главная{% endblock %}
 
+{% block title %}главная{% endblock %}
 
 {% block content %}
 <div class="features">
-    <h2>{{ main }}</h2>
-    <p>{{ about }}</p>
-    <ul>
-        <li>{{ money }}</li>
-        <li>{{ communication }}</li>
+    <h3 style="margin-bottom: 50px">
+        {{ main }}
+    </h3>
+    <h5 align="center">{{ about }}</h5>
+    <ul style="margin-right: 505px; margin-top: 50px;">
+        <li >{{ money }}</li>
+        <img src="{%' static main/img/money.jpg' %}" alt="деньги">
+        <span class="деньги"></span>
+        <li>{{ experience }}</li>
         <li>{{ something }}</li>
     </ul>
     <h4>{{ tasks }}</h4>
+
 </div>
 {% endblock %}

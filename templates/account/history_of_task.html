@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
 
+{% load static %}
 
 {% block title %}история выполненных заданий{% endblock %}
+
 
 {% block content %}
 <div class='features'>
     {% for tasks in task %}
-    {{ tasks.title }}
+    <h4>{{ tasks.title }}</h4>
     {% endfor %}
  <form method="post">
     {{ form.as_p }}
  </form>
 </div>
 {% endblock %}
+
+<style>
+    h4 {
+        color: red;
+    }
+</style>
