@@ -6,11 +6,15 @@
 {% block content %}
 <div class="features">
     {% for task in tasks %}
-    {{ task.title }}
-    {{ task.description }}
+    <br style="margin-right: 200px">{{ task.title }}</br>
     <a href="{% url 'end_task' task_id=task.id %}">
         <button  class="btn btn-info"><i class="fa fa-plus-circle"></i>выполнил задание</button>
     </a>
+    {% if not task.executor %}
+    <strong>ваше задание еще не приняли</strong>
+    {% else %}
+     {{ task.executor }}
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock %}

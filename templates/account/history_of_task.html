@@ -8,7 +8,7 @@
 {% block content %}
 <div class='features'>
     {% for tasks in task %}
-    <h4>{{ tasks.title }}</h4>
+    <h5 style="margin-right: 925px; margin-top: 45px">{{ tasks.title }}-{{ task.cost }}</h5>
     {% endfor %}
  <form method="post">
     {{ form.as_p }}
@@ -16,8 +16,3 @@
 </div>
 {% endblock %}
 
-<style>
-    h4 {
-        color: red;
-    }
-</style>
