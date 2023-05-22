@@ -4,16 +4,16 @@
 
 
 {% block content %}
-   <a href="{% url 'end_task' task_id=task_id %}">
-       <button class="btn btn-info"><i class="fa fa-plus-circle"></i>задание выполнено</button>
-   </a>
+
 <div class="features">
     {% if messages %}
-        {% for message in messages %}
-            {{ message }}
-        {% endfor %}
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
     {% else %}
-        вы выполнили задание
+    <a href="{% url 'end_task' task_id=task_id %}">
+        <button class="btn btn-info"><i class="fa fa-plus-circle"></i>задание выполнено</button>
+    </a>
     {% endif %}
 </div>
 {% endblock %}

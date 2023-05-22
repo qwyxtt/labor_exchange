@@ -24,19 +24,10 @@ class Employer(models.Model):
 
 
 class Task(models.Model):
-    CHOICE_CITY = (
-        ('minsk', 'Минск'),
-        ('grodno', 'Гродно'),
-        ('brest', 'Брест'),
-        ('vitebsk', 'Витебск'),
-        ('mogilev', 'Могилев'),
-        ('gomel', 'Гомель'),
-    )
     title = models.CharField(max_length=255, null=True)
     is_active = models.BooleanField(default=True)
     description = models.TextField(null=True)
     end_date = models.DateTimeField(null=True)
-    city = models.CharField(choices=CHOICE_CITY, max_length=255, null=True)
     cost = models.DecimalField(
         default=0,
         decimal_places=2,
