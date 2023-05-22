@@ -8,13 +8,14 @@ from .forms import CreateTaskForm
 
 
 def index(request):
+    tsk = Task.objects.filter(executor=None).count()
     context = {
         'main': 'Главная',
         'about': 'С помощью нашего сайта вы сможете :',
-        'money': 'Данный сайт предназначен для того, чтобы предоставить подросткам возможность получить свой первый опыт'
-                 ' работы и первый денежный заработак ' 
-                 ' Наша цель - предоставить нашим '
-                 'пользователям максимально комфортный способ заработка, чтобы помочь им заработать свои первые деньги '
+        'descriptions': 'Данный сайт предназначен для того, чтобы предоставить подросткам возможность получить свой '
+                        'первый опыт работы и первый денежный заработак  Наша цель - предоставить нашим пользователям '
+                        'максимально комфортный способ заработка, чтобы помочь им заработать свои первые деньги ',
+        'tsks': tsk
     }
     return render(request, 'work/index.html', context)
 
@@ -37,8 +38,7 @@ def create_task(request):
                 title=cd['title'],
                 description=cd['description'],
                 end_date=cd['end_date'],
-                cost=cd['cost'],
-                city=cd['city']
+                cost=cd['cost']
             )
             task.owner = obj
             task.save()
@@ -57,19 +57,6 @@ def work(request):
     context = {
         'info': 'Здесь вы можете выбрать работу на свой вкус',
         'tasks': Task.objects.filter(is_active=True)
-    }
-    my_data = Task.objects.all()
-    my_filter = request.GET.get('filter')
-    my_sort = request.GET.get('sort')
-    if my_filter:
-        my_data = my_data.filter(my_field=my_filter)
-    if my_sort:
-        my_data = my_data.order_by(my_sort)
-
-    context = {
-        'my_data': my_data,
-        'my_filter': my_filter,
-        'my_sort': my_sort,
     }
     return render(request, 'account/work.html', context)
 
@@ -102,6 +89,10 @@ def go_to_task(request, task_id):
 def end_task(request, task_id):
     try:
         task = Task.objects.get(pk=task_id)
+        if not task.executor:
+            msg = 'это задание никто не выбрал'
+            messages.add_message(request, messages.ERROR, msg)
+            return render(request, 'work/end_task.html', context={'task_id': task_id})
         if request.user == task.owner.user:
             task.is_active = False
             task.owner.balance -= task.cost

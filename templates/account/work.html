@@ -6,46 +6,12 @@
 
 {% block content %}
 <div class="features">
-    <h4>{{ info }}</h4>
+    <h4 style="margin-top: 20px">{{ info }}</h4>
     {% for task in tasks %}
-        {{ task.title }}<br>
+        <br>{{ task.title }}</br>
     <a href="{% url 'accept_task' task_id=task.id %}">
         <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Перейти к заданию</button>
     </a>
     {% endfor %}
 </div>
-    <h4 style="color: white">My Data</h4>
-
-    <form method="GET">
-        <label for="filter">Filter:</label>
-        <input type="text" name="filter" id="filter" value="{{ my_filter }}">
-
-        <label for="sort">Sort by:</label>
-        <select name="sort" id="sort">
-            <option value="">---</option>
-            <option value="my_field">My Field</option>
-            <option value="-my_field">My Field (reverse)</option>
-        </select>
-
-        <button type="submit">Apply</button>
-    </form>
-
-    <table>
-        <thead>
-            <tr>
-                <th>My Field</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in my_data %}
-                <tr>
-                    <td>{{ item.my_field }}</td>
-                </tr>
-            {% empty %}
-                <tr>
-                    <td colspan="1">No data</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 {% endblock %}
