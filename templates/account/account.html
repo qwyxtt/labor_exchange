@@ -1,30 +1,27 @@
 {% extends 'base.html' %}
 
-{% block title %}аккаунт {{request.user.firstname}}{% endblock %}
-
-    <style>
-        h5 {
-            border: 2px solid #ffff00;
-            color: blue;
-            padding: 10px 20px 10px 20px;
-            margin: 20px;
-            width: 400px;
-    }
-    </style>
-
+{% block title %}аккаунт {{request.user.firstname}} {% endblock %}
 
 {% block content %}
 <div class="features">
     {% if request.user.activity == 'employer' %}
-    <h5 style="margin-left: 1050px"> {{ emp.balance }} </h5>
+    <ul style="margin-right: 1000px; margin-top: 55px; font-size: 1.5rem">
+        <li>{{ request.user.firstname }}</li>
+        <li>{{ request.user.lastname }}</li>
+    </ul>
+    <big style="margin-left: 1200px; margin-bottom: 444px"> {{ emp.balance }}</big>
       <a   href="{% url 'task' %}" >
           <button class="btn btn-info"><i class="fa fa-plus-circle"></i>история работ</button>
       </a>
       <a   href="{% url 'create_task' %}" >
-          <button class="btn btn-info"><i class="fa fa-plus-circle"></i>создать задание</button>
+          <button style="margin-top: 200px" class="btn btn-info"><i class="fa fa-plus-circle"></i>создать задание</button>
       </a>
     {% else %}
-    <h5 style="margin-left: 1050px">{{ emp.balance }}</h5>
+      <ul style="margin-right: 1000px; margin-top: 55px; font-size: 1.5rem">
+        <li>{{ request.user.firstname }}</li>
+        <li>{{ request.user.lastname }}</li>
+    </ul>
+    <big style="margin-left: 1200px; margin-bottom: 555px">{{ emp.balance }}</big>
        <a   href="{% url 'history_of_task' %}">
            <button class="btn btn-info"><i class="fa fa-plus-circle"></i>история выполненных работ</button>
        </a>
