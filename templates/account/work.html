@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 
-{% block title %}work{% endblock %}
+{% block title %}работа{% endblock %}
 
 
 {% block content %}
 <div class="features">
     <h4 style="margin-top: 20px">{{ info }}</h4>
     {% for task in tasks %}
-        <br>{{ task.title }}</br>
+        <br style="margin-top: 500px">{{ task.title }}</br>
     <a href="{% url 'accept_task' task_id=task.id %}">
         <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Перейти к заданию</button>
     </a>

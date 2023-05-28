@@ -2,10 +2,11 @@
 
 {% block content %}
 <div class="features">
-  {{ task.title }}
-  {{ task.description }}
+  <h4>{{ task.title }}</h4>
+    <p style="font-size: 1.1rem">описание:
+        {{ task.description }}</p>
    <a href="{% url 'go_to_task' task_id=task.id %}">
-        <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Принять задание</button>
+        <button style="white-space: pre;" class="btn btn-info"><i class="fa fa-plus-circle"></i>Принять задание</button>
     </a>
 </div>
 {% endblock %}

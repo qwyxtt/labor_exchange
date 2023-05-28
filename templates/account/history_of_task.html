@@ -8,7 +8,7 @@
 {% block content %}
 <div class='features'>
     {% for tasks in task %}
-    <h5 style="margin-right: 500px; margin-top: 45px">{{ tasks.title }}-{{ task.owner.user.firstname }}</h5>
+    <h5 style="margin-right: 500px; margin-top: 45px">{{ tasks.title }}-{{ task.owner.user }}</h5>
     {% endfor %}
  <form method="post">
     {{ form.as_p }}

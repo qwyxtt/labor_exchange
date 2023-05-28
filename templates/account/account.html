@@ -5,25 +5,25 @@
 {% block content %}
 <div class="features">
     {% if request.user.activity == 'employer' %}
-    <ul style="margin-right: 1000px; margin-top: 55px; font-size: 1.5rem">
+    <ul style="margin-right: 1000px; margin-top: 33px; font-size: 1.5rem">
         <li>{{ request.user.firstname }}</li>
         <li>{{ request.user.lastname }}</li>
     </ul>
-    <big style="margin-left: 1200px; margin-bottom: 444px"> {{ emp.balance }}</big>
+    <big style="margin-left: 777px; margin-bottom: 77px;"> баланс|{{ emp.balance }}</big>
       <a   href="{% url 'task' %}" >
           <button class="btn btn-info"><i class="fa fa-plus-circle"></i>история работ</button>
       </a>
       <a   href="{% url 'create_task' %}" >
-          <button style="margin-top: 200px" class="btn btn-info"><i class="fa fa-plus-circle"></i>создать задание</button>
+          <button style="margin-right: 550px" class="btn btn-info"><i class="fa fa-plus-circle"></i>создать задание</button>
       </a>
     {% else %}
-      <ul style="margin-right: 1000px; margin-top: 55px; font-size: 1.5rem">
+      <ul style="margin-right: 1000px; margin-top: 33px; font-size: 1.5rem">
         <li>{{ request.user.firstname }}</li>
         <li>{{ request.user.lastname }}</li>
     </ul>
-    <big style="margin-left: 1200px; margin-bottom: 555px">{{ emp.balance }}</big>
+    <big style="margin-left: 890px; margin-bottom: 1000px">баланс|{{ emp.balance }}</big>
        <a   href="{% url 'history_of_task' %}">
-           <button class="btn btn-info"><i class="fa fa-plus-circle"></i>история выполненных работ</button>
+           <button style="margin-right: 550px" class="btn btn-info"><i class="fa fa-plus-circle"></i>история выполненных работ</button>
        </a>
 
     {% endif %}
