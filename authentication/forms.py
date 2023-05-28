@@ -4,7 +4,19 @@ from django.utils.timezone import now
 
 
 class SignUpForm(forms.ModelForm):
-    birthdate = forms.DateField(widget=forms.SelectDateWidget(years=range(1950, int(now().year))))
+    CHOICE_ACTIVITY = (
+        ('employee', 'employee'),
+        ('employer', 'employer')
+    )
+
+    birthdate = forms.DateField(
+        label='',
+        widget=forms.SelectDateWidget(
+            attrs={"class": "end-date-select"},
+            years=range(1950, int(now().year))
+        )
+    )
+    activity = forms.TypedChoiceField(choices=CHOICE_ACTIVITY, label='')
     email = forms.EmailField(
         label='',
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите почту'})
@@ -33,5 +45,5 @@ class SignUpForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField()
+    email = forms.EmailField(widget=forms.EmailInput)
     password = forms.CharField(widget=forms.PasswordInput)

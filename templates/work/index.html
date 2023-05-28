@@ -5,16 +5,16 @@
 {% block title %}главная{% endblock %}
 
 {% block content %}
-<div class="features">
-    <h3 style="margin-bottom: 50px">
+<div class="features main-features">
+
+    <h3 style="margin: 50px 0; font-size: 1.1em;">
         {{ main }}
     </h3>
-    <h6  style="margin-bottom: 50px;">{{ about }}</h6>
-    <strong style="margin-left: 50px">
+    <strong>
         {{ descriptions }}
     </strong>
 
-    <h5 style="margin-left: 850px; margin-top: 111px" >свободные работы - {{ tsks }}</h5>
+    <h5 style="margin-top: 20px">Доступно работ: {{ tsks }}</h5>
 
 </div>
 {% endblock %}

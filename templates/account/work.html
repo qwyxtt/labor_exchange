@@ -6,11 +6,11 @@
 
 {% block content %}
 <div class="features">
-    <h4 style="margin-top: 20px">{{ info }}</h4>
+    <h4 style="margin: 20px 0; text-align: center">{{ info }}</h4>
     {% for task in tasks %}
-        <br>{{ task.title }}</br>
+        <span style="margin-right: 8px;">{{ task.title }}</span>
     <a href="{% url 'accept_task' task_id=task.id %}">
-        <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Перейти к заданию</button>
+        <button class="btn btn-info">Перейти к заданию</button>
     </a>
     {% endfor %}
 </div>

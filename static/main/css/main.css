@@ -56,20 +56,14 @@ aside ul li:hover, aside ul a:hover {
 }
 
 main .features {
-    float: left;
+    margin: 0 auto;
     color: #fff;
-    text-align: center;
     width: 75%;
     height: 100%;
 }
 
 main .features h1 {
     font-size: 50px;
-}
-
-main .features p {
-    max-width: 400px;
-    margin: 20px auto
 }
 
 .alert-warning {
@@ -80,12 +74,57 @@ main .features p {
     text-align: left;
 }
 
-form {
-    margin-left: 32%;
-    width: 500px;
-    margin-top: 50px;
-}
 main {
     overflow-y: auto;
     height: 100%;
+    display: flex;
+}
+.main-features {
+    font-size: 30px;
+}
+
+.features-form-fields{
+    display: grid;
+    grid-template: max-content / max-content 1fr;
+    gap: 4px 16px;
+
+}
+.features-form-login-fields label{
+    text-align: left;
+}
+.login-features {
+    display: flex;
+    flex: 0;
+    align-items: center;
+}
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    align-items: start;
+}
+
+i.fa, i.fas {
+    margin-right: 4px;
+}
+.task-title {
+    text-align: center;
+
+}
+.task-description {
+    border-radius: 6px;
+    border: 1px solid white;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+.task-description p{
+    margin: 20px 0 0;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+.end-date-select {
+    grid-column-start: 2;
 }

@@ -4,11 +4,15 @@
 
 {% block content %}
 <div class="features">
-    <form method="post">
+    <form method="post" style="margin-top: 90px; display: flex; flex-direction: column">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="features-form-fields">
+            {% for field in form %}
+            <label>{{ field.label }}</label>
+            {{ field }}
+            {% endfor %}
+        </div>
         <span>{{error}}</span>
-
         <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Зарегистрироваться</button>
     </form>
 </div>

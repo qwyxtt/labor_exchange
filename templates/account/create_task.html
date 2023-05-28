@@ -5,11 +5,15 @@
 
 {% block content %}
 <div class='features'>
-    <form method="post">
+    <form method="post" style="margin-top: 90px; display: flex; flex-direction: column">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-info"><i class="fa fa-plus-circle"></i>Создать задание</button>
-
+        <div class="features-form-fields">
+        {% for field in form %}
+            <label>{{ field.label }}</label>
+            {{ field }}
+        {% endfor %}
+            </div>
+        <button class="btn btn-info" style="margin: 20px auto 0"><i class="fa fa-plus-circle"></i>Создать задание</button>
     </form>
 </div>
 {% endblock %}

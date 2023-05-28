@@ -1,5 +1,4 @@
 <!doctype html>
-<!--mb zdez-->
 {% load static %}
 <html lang="ru">
 <head>
@@ -40,11 +39,11 @@
         {% endif %}
         {% if request.user.is_authenticated %}
         <a href="{% url 'account' %}">
-            <li><i class="fas fa-home"></i>аккаунт</li>
+            <li><i class="fas fa-home"></i>Aккаунт</li>
         </a>
         {% endif %}
                 <a href="{% url 'work' %}">
-            <li><i class="fas fa-home"></i>работа</li>
+            <li><i class="fas fa-home"></i>Pабота</li>
         </a>
 
     </ul>
