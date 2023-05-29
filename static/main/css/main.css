@@ -128,3 +128,9 @@ h1, h2, h3 {
 .end-date-select {
     grid-column-start: 2;
 }
+
+.features-task-cicle {
+    display: grid;
+    grid-template: max-content / repeat(2, max-content);
+    grid-auto-rows: max-content
+}
